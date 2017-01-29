@@ -9,26 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var forms_1 = require('@angular/forms');
-var material_1 = require('@angular/material');
-var app_component_1 = require('./app.component');
+var router_1 = require('@angular/router');
 var page_not_found_component_1 = require('./page-not-found.component');
-var proerp_module_1 = require('./proerp/proerp.module');
-var feature_component_1 = require('./prostudy/feature.component');
-var app_routing_module_1 = require('./app-routing.module');
-var AppModule = (function () {
-    function AppModule() {
+var feature_component_1 = require('./proerp/feature.component');
+var feature_component_2 = require('./prostudy/feature.component');
+var appRoutes = [
+    { path: 'proerp-index', component: feature_component_1.ProERPComponent },
+    { path: 'prostudy-index', component: feature_component_2.ProStudyComponent },
+    { path: '', component: feature_component_2.ProStudyComponent, pathMatch: 'full' },
+    { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    AppModule = __decorate([
+    AppRoutingModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, material_1.MaterialModule.forRoot(), proerp_module_1.ProERPModule, app_routing_module_1.AppRoutingModule],
-            declarations: [app_component_1.AppComponent, page_not_found_component_1.PageNotFoundComponent, feature_component_1.ProStudyComponent],
-            bootstrap: [app_component_1.AppComponent]
+            imports: [
+                router_1.RouterModule.forRoot(appRoutes)
+            ],
+            exports: [
+                router_1.RouterModule
+            ]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], AppRoutingModule);
+    return AppRoutingModule;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.AppRoutingModule = AppRoutingModule;
+//# sourceMappingURL=app-routing.module.js.map
