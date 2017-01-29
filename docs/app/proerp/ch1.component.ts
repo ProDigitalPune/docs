@@ -1,7 +1,8 @@
-import { Component, Optional } from '@angular/core';
+import { Component, Optional, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef, MdSnackBar } from '@angular/material';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
 
 @Component( {
     template: `<h2>ProERP Chapter 1</h2> received id is: {{id}}   
@@ -27,7 +28,7 @@ import 'rxjs/add/operator/switchMap';
         Under "Email Notifications," next to "Feature Announcements," choose
         "Yes." In the top right, click Save settings. Troubleshoot issues</p>`
 })
-export class Ch1Component {
+export class Ch1Component implements OnInit {
     id: string;
 
     constructor(
@@ -36,9 +37,9 @@ export class Ch1Component {
     ) { }
 
     ngOnInit() {
-        this.route.params
-            .switchMap(( params: Params ) => this.id = params['id'] );
-        console.log( "this.id: " + this.id );
+        this.route.params.switchMap(( params: Params ) => ( params['id'] ) ).subscribe(( id: string ) => {
+            this.id = id;
+            console.log("this.id: " + this.id)});
     }
 
 }

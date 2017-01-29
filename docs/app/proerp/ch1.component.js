@@ -18,9 +18,10 @@ var Ch1Component = (function () {
     }
     Ch1Component.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params
-            .switchMap(function (params) { return _this.id = params['id']; });
-        console.log("this.id: " + this.id);
+        this.route.params.switchMap(function (params) { return (params['id']); }).subscribe(function (id) {
+            _this.id = id;
+            console.log("this.id: " + _this.id);
+        });
     };
     Ch1Component = __decorate([
         core_1.Component({

@@ -14,6 +14,6 @@ export class ProERPComponent {
         ) { }
     
     goToCh1(){
-        this.router.navigate(['/proerp-index/ch1', { id: 15, foo: 'foo' }]);
+        this.router.navigate(['/proerp-index/ch1', 15]);
     }
 }
